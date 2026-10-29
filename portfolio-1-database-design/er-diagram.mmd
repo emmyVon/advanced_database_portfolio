@@ -1,0 +1,154 @@
+
+erDiagram
+    DEPARTMENT ||--o{ DOCTOR : employs
+    PATIENT ||--o{ APPOINTMENT : books
+    DOCTOR ||--o{ APPOINTMENT : attends
+    APPOINTMENT o|--o| CONSULTATION : results_in
+    PATIENT ||--o{ CONSULTATION : receives
+    DOCTOR ||--o{ CONSULTATION : conducts
+
+    CONSULTATION ||--o{ CONSULTATION_DIAGNOSIS : has
+    DIAGNOSIS ||--o{ CONSULTATION_DIAGNOSIS : classifies
+
+    CONSULTATION ||--o{ PRESCRIPTION : generates
+    PRESCRIPTION ||--|{ PRESCRIPTION_ITEM : contains
+    MEDICATION ||--o{ PRESCRIPTION_ITEM : identifies
+
+    PATIENT ||--o{ BILL : receives
+    CONSULTATION o|--o{ BILL : may_generate
+    BILL ||--|{ BILL_ITEM : contains
+    BILL ||--o{ PAYMENT : receives
+
+    DEPARTMENT {
+        int department_id PK
+        string department_name UK
+    }
+    DOCTOR {
+        int doctor_id PK
+        int department_id FK
+        string license_no UK
+        string first_name
+        string last_name
+    }
+    PATIENT {
+        int patient_id PK
+        string first_name
+        string last_name
+        date date_of_birth
+        string phone
+    }
+    APPOINTMENT {
+        int appointment_id PK
+        int patient_id FK
+        int doctor_id FK
+        datetime appointment_date
+        string status
+    }
+    CONSULTATION {
+        int consultation_id PK
+        int appointment_id FK
+        int patient_id FK
+        int doctor_id FK
+        datetime consultation_date
+    }
+    DIAGNOSIS {
+        int diagnosis_id PK
+        string diagnosis_code UK
+        string diagnosis_name
+    }
+    CONSULTATION_DIAGNOSIS {
+        int consultation_id PK, FK
+        int diagnosis_id PK, FK
+    }
+    PRESCRIPTION {
+        int prescription_id PK
+        int consultation_id FK
+        datetime prescribed_at
+    }
+    MEDICATION {
+        int medication_id PK
+        string medication_name
+        string strength
+        string form
+    }
+    PRESCRIPTION_ITEM {
+        int prescription_item_id PK
+        int prescription_id FK
+        int medication_id FK
+        string dosage
+        string frequency
+    }
+    BILL {
+        int bill_id PK
+        int patient_id FK
+        int consultation_id FK
+        date bill_date
+        string status
+    }
+    BILL_ITEM {
+        int bill_item_id PK
+        int bill_id FK
+        string description
+        int quantity
+        decimal unit_price
+    }
+    PAYMENT {
+        int payment_id PK
+        int bill_id FK
+        decimal amount
+        datetime paid_at
+        string method
+    }
+
+
+    The database must support these activities:
+1. Register each patient and assign a unique patient number.
+2. Store doctors' details and their medical specializations.
+3. Record the departments or specialties in which doctors work.
+4. Schedule appointments between patients and doctors.
+5. Record consultations and clinical notes.
+6. Associate one or more diagnoses with a consultation.
+7. Allow doctors to prescribe medications during consultations.
+8. Store prescribed medicines, dosages, and treatment instructions.
+9. Generate bills for consultations and other services.
+10. Record payments against bills and identify outstanding balances.
+11. Maintain relationships between all records without unnecessary duplication.
+12. Restrict access to confidential patient and medical information according to staff roles.
+Scope and assumptions
+To keep the project manageable, we'll use these assumptions:
+- One patient can have many appointments.
+- One doctor can attend to many patients.
+- An appointment may result in one consultation, but a cancelled or missed appointment may have none.
+- A consultation may have multiple diagnoses and prescriptions.
+- A prescription may contain several medication items.
+- A bill may contain multiple bill items and receive multiple payments.
+- Every consultation is associated with a patient and a doctor.
+- The initial system focuses on outpatient care rather than hospital admission, surgery, laboratory workflows, or inpatient bed management.Business requirements
+The database must support these activities:
+1. Register each patient and assign a unique patient number.
+2. Store doctors' details and their medical specializations.
+3. Record the departments or specialties in which doctors work.
+4. Schedule appointments between patients and doctors.
+5. Record consultations and clinical notes.
+6. Associate one or more diagnoses with a consultation.
+7. Allow doctors to prescribe medications during consultations.
+8. Store prescribed medicines, dosages, and treatment instructions.
+9. Generate bills for consultations and other services.
+10. Record payments against bills and identify outstanding balances.
+11. Maintain relationships between all records without unnecessary duplication.
+12. Restrict access to confidential patient and medical information according to staff roles.
+Scope and assumptions
+To keep the project manageable, we'll use these assumptions:
+- One patient can have many appointments.
+- One doctor can attend to many patients.
+- An appointment may result in one consultation, but a cancelled or missed appointment may have none.
+- A consultation may have multiple diagnoses and prescriptions.
+- A prescription may contain several medication items.
+- A bill may contain multiple bill items and receive multiple payments.
+- Every consultation is associated with a patient and a doctor.
+- The initial system focuses on outpatient care rather than hospital admission, surgery, laboratory workflows, or inpatient bed management.
+      varchar first_name
+      varchar last_name
+      varchar email UK
+      varchar specialty
+      boolean active
