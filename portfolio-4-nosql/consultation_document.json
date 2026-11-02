@@ -1,0 +1,28 @@
+{
+  "consultationId": "CONS-DEMO-001",
+  "patient": {
+    "patientId": 1,
+    "displayName": "Mina Adebayo"
+  },
+  "appointment": {
+    "scheduledAt": "2026-10-12T09:00:00+01:00",
+    "status": "completed"
+  },
+  "recordedAt": "2026-10-12T09:25:00+01:00",
+  "notes": "Fictional consultation note for database testing.",
+  "diagnoses": [
+    {
+      "code": "DX-001",
+      "description": "Routine examination"
+    }
+  ],
+  "prescriptions": [
+    {
+      "medicationName": "Sample medication A",
+      "strength": "10 mg",
+      "dose": "1 unit",
+      "frequency": "twice daily",
+      "durationDays": 5
+    }
+  ]
+}
