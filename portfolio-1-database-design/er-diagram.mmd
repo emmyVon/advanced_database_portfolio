@@ -8,6 +8,110 @@ erDiagram
     DOCTOR ||--o{ CONSULTATION : conducts
 
     CONSULTATION ||--o{ CONSULTATION_DIAGNOSIS : has
+    DIAGNOSES ||--o{ CONSULTATION_DIAGNOSIS : classifies
+
+    CONSULTATION ||--o{ PRESCRIPTION : generates
+    PRESCRIPTION ||--|{ PRESCRIPTION_ITEM : contains
+    MEDICATIONS ||--o{ PRESCRIPTION_ITEM : identifies
+
+    PATIENT ||--o{ BILL : receives
+    CONSULTATION o|--o{ BILL : may_generate
+    BILL ||--|{ BILL_ITEM : contains
+    BILL ||--o{ PAYMENT : receives
+
+    DEPARTMENT {
+        int department_id PK
+        string department_name UK
+    }
+    DOCTOR {
+        int doctor_id PK
+        int department_id FK
+        
+        string first_name
+        string last_name
+    }
+    PATIENT {
+        int patient_id PK
+        string first_name
+        string last_name
+        date date_of_birth
+        string phone
+        string email UK
+    }
+    APPOINTMENT {
+        int appointment_id PK
+        int patient_id FK
+        int doctor_id FK
+        datetime appointment_date
+        datetime scheduled_at 
+        string status
+    }
+    CONSULTATION {
+        int consultation_id PK
+        int appointment_id FK
+        string notes
+        datetime recorded_at
+    }
+    DIAGNOSES {
+        int diagnosis_id PK
+        string diagnosis_code UK
+        string diagnosis_name
+        string description
+    }
+    CONSULTATION_DIAGNOSIS {
+        int consultation_id PK, FK
+        int diagnosis_id PK, FK
+    }
+    PRESCRIPTION {
+        int prescription_id PK
+        int consultation_id FK
+        datetime prescribed_at
+        string instructions
+    }
+    MEDICATIONS {
+        int medication_id PK
+        string name
+        string strength
+        string dosage_form
+    }
+    PRESCRIPTION_ITEM {
+    
+        int prescription_id FK
+        int medication_id FK
+        string dose
+        int duration_days
+        string frequency
+    }
+    BILL {
+        int bill_id PK
+        int patient_id FK
+        int consultation_id FK
+        date billdate
+        string status
+    }
+    BILL_ITEM {
+        int bill_item_id PK
+        int bill_id FK
+        string description
+        int quantity
+        decimal unit_price
+    }
+    PAYMENT {
+        int payment_id PK
+        int bill_id FK
+        decimal amount
+        datetime paid_at
+        string method
+    }
+
+    DEPARTMENT ||--o{ DOCTOR : employs
+    PATIENT ||--o{ APPOINTMENT : books
+    DOCTOR ||--o{ APPOINTMENT : attends
+    APPOINTMENT o|--o| CONSULTATION : results_in
+    PATIENT ||--o{ CONSULTATION : receives
+    DOCTOR ||--o{ CONSULTATION : conducts
+
+    CONSULTATION ||--o{ CONSULTATION_DIAGNOSIS : has
     DIAGNOSIS ||--o{ CONSULTATION_DIAGNOSIS : classifies
 
     CONSULTATION ||--o{ PRESCRIPTION : generates
