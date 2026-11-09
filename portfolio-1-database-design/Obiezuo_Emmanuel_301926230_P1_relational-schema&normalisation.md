@@ -8,7 +8,7 @@ KEYS: **PK** = primary key, **FK** = foreign key, **UQ** = unique constraint.
 - `appointments(appointment_id PK, patient_id FK → patients, doctor_id FK → doctors, scheduled_at, status, reason, created_at)`
 - `consultations(consultation_id PK, appointment_id FK UQ → appointments, notes, recorded_at)`
 - `diagnoses(diagnosis_id PK, diagnosis_code UQ,diagnosis_name, description)`
-- `consultation_diagnoses(consultation_id PK/FK → consultations, diagnosis_id PK/FK → diagnoses, notes)`
+- `consultation_diagnoses(consultation_id PK/FK → consultations,  PK/FK → diagnoses, notes)`
 - `medications(medication_id PK, name UQ, strength, dosage_form)`
 - `prescriptions(prescription_id PK, consultation_id FK → consultations, prescribed_at, instructions)`
 - `prescription_items(prescription_id PK/FK → prescriptions, medication_id PK/FK → medications, dose, frequency, duration_days, quantity)`

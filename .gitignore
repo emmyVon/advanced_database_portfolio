@@ -1,0 +1,12 @@
+# Local credentials and environment files
+.env
+.env.*
+.env.example
+# Database dumps and local data
+*.dump
+*.backup
+*.sql.gz
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/

@@ -26,4 +26,3 @@ This is a practical portfolio for the MIT 8103 Continuous Assessment. It uses a 
 4. Run `data/postgres_seed.sql`.
 5. Run queries from Portfolio 2 and capture output.
 6. Run Portfolio 3 experiments in two separate database sessions where indicated.
-7. Save screenshots in the relevant `evidence/` folder. Do not claim a test passed unless you ran it.

@@ -14,7 +14,7 @@ In a hospital/Clinic setting, system downtime can disrupt patient care. To preve
 
 As the clinic operates over several years, tables like Consultation, Prescription, and BillItem will grow massively and there may expansions by creation of branches. To handle data distribution the following techniques will be adopted:
 
-- Horizontal Sharding (by Location/Branch): If CarePlus Hospital opens multiple branches, data can be sharded using a BranchID. All patient records and appointments for Branch A reside on one shard, while Branch B data resides on another.
+- Horizontal Sharding (by Location/Branch): If GraceCare Hospital opens multiple branches, data can be sharded using a BranchID. All patient records and appointments for Branch A reside on one shard, while Branch B data resides on another.
 - Time-Based Partitioning: For tables like Appointment and Bill, we can partition the data by year. Current year records (2026) are kept on high-speed solid-state drives (SSDs) for fast access, while historical records (e.g., 2020-2023) are moved to cheaper, slower storage tiers.
 
 ## Availability Vs Consistency (CAP Thorem)
