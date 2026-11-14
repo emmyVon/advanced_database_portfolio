@@ -32,7 +32,7 @@ The database must support these activities:
 | Doctor                | DoctorID, DepartmentID, FirstName, LastName, LicenseNo              |
 | Appointment           | AppointmentID, PatientID, DoctorID, AppointmentDate, Status         |
 | Consultation          | ConsultationID, AppointmentID, PatientID, DoctorID, Notes           |
-| Diagnosis             | DiagnosisID, DiagnosisCode, DiagnosisName                           |
+| Diagnoses             | DiagnosisID, DiagnosisCode, DiagnosisName                           |
 | ConsultationDiagnosis | ConsultationID, DiagnosisID                                         |
 | Medication            | MedicationID, MedicationName, Strength, Form                        |
 | Prescription          | PrescriptionID, ConsultationID, PrescribedAt                        |
@@ -48,4 +48,4 @@ The database must support these activities:
 - An appointment may lead to zero or one consultation; cancelled/no-show appointments may have none.
 - A consultation can record multiple diagnoses and multiple prescriptions.
 - A prescription contains one or more medication lines.
-- All records are fictional. Real deployments require privacy, access-control, audit and regulatory review.
+- All records are fictional.
