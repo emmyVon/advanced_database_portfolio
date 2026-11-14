@@ -15,7 +15,6 @@ This is a practical portfolio for the MIT 8103 Continuous Assessment. It uses a 
 - `portfolio-3-transactions-concurrency/`: commit/rollback and isolation/concurrency experiments.
 - `portfolio-4-nosql/`: MongoDB document examples and comparison with relational design.
 - `portfolio-5-distributed-cloud/`: replication, sharding, availability, consistency and deployment exercise.
-- `final-documentation/`: 2–3 page report outline, reflection prompts, references and AI-use declaration.
 - `data/`: fictional seed data.
 
 ## Quick start (PostgreSQL)
